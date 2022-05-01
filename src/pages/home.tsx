@@ -36,7 +36,7 @@ class HomePage extends Component<{}, HomeType> {
       >
         <div className="close-section">&times;</div>
 
-        <div className="demo-box">{section}</div>
+        <div className="section-box">{section}</div>
       </section>
     );
   }
