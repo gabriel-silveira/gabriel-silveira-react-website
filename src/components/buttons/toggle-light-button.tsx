@@ -1,9 +1,9 @@
 import { Component } from "react";
 
-import '../../assets/sass/toggle-light-button.sass';
+import '../../assets/scss/toggle-light-button.scss';
 
 type ToggleLightButtonType = {
-  light: 'on' | 'off',
+  light: boolean | undefined,
 }
 
 class ToggleLightButton extends Component<{}, ToggleLightButtonType> {
@@ -11,47 +11,56 @@ class ToggleLightButton extends Component<{}, ToggleLightButtonType> {
     super(props);
 
     this.state = {
-      light: 'off',
+      light: false,
     }
+  }
 
-    this.getLightState = this.getLightState.bind(this);
+  componentDidMount() {
+    // start with lights off
+    this.toggleLight();
+  }
+
+  lightIsOn = () => {
+    return this.state.light;
+  }
+
+  changeTheme() {
+    const body = document.getElementsByTagName('body')[0];
+
+    body.classList[this.lightIsOn() ? 'add' : 'remove']('light');
   }
 
   toggleLight = () => {
-    console.log(this.state.light);
     this.setState({
-      light: this.state.light === 'on' ? 'off' : 'on',
+      light: !this.lightIsOn(),
     });
-    console.log(this.state.light);
+
+    this.changeTheme();
   }
 
   getLightState = () => {
-    return this.state.light === 'on' ? 'Light' : 'Dark';
+    return this.lightIsOn() ? 'Dark' : 'Light';
+  }
+
+  getButtonClass() {
+    return this.lightIsOn() ? 'theme-dark' : '';
   }
 
   render() {
     return (
-      <div
-        className="toggle-light-button-wrapper"
-      >
-        <label
-          className="toggle-light-button"
-        >
-          <input type="checkbox" />
+      <div className="toggle-light-button-wrapper">
+        <div>
+          <input
+            id="theme-toggle"
+            type="checkbox"
+            checked={this.state.light}
+            onChange={this.toggleLight}
+          />
 
-          <div
-            className="switch"
-            onClick={this.toggleLight}
-          >
-            <div />
-            <div />
-            <span />
-          </div>
-        </label>
+          <label htmlFor="theme-toggle"><span></span></label>
+        </div>
 
-        <div
-          style={{ marginTop: 30 }}
-        >
+        <div className="light-status-label">
           {this.getLightState() }
         </div>
       </div>

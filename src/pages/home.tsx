@@ -30,7 +30,10 @@ class HomePage extends Component<{}, HomeType> {
 
   renderSection(section: string) {
     return (
-      <section className="section">
+      <section
+        className="section"
+        key={section}
+      >
         <div className="close-section">&times;</div>
 
         <div className="demo-box">{section}</div>
