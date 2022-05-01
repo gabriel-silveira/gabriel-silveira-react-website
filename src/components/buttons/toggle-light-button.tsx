@@ -2,35 +2,47 @@ import { Component } from "react";
 
 import '../../assets/sass/toggle-light-button.sass';
 
-type ToggleLightButtonProps = {}
-
 type ToggleLightButtonType = {
   light: 'on' | 'off',
 }
 
-class ToggleLightButton extends Component<ToggleLightButtonProps, ToggleLightButtonType> {
-  state: ToggleLightButtonType = {
-    light: 'off',
+class ToggleLightButton extends Component<{}, ToggleLightButtonType> {
+  constructor(props: object) {
+    super(props);
+
+    this.state = {
+      light: 'off',
+    }
+
+    this.getLightState = this.getLightState.bind(this);
   }
 
   toggleLight = () => {
-    console.log(this.state);
+    console.log(this.state.light);
     this.setState({
       light: this.state.light === 'on' ? 'off' : 'on',
     });
-    console.log(this.state);
+    console.log(this.state.light);
+  }
+
+  getLightState = () => {
+    return this.state.light === 'on' ? 'Light' : 'Dark';
   }
 
   render() {
     return (
       <div
         className="toggle-light-button-wrapper"
-        onClick={this.toggleLight}
       >
-        <label className="toggle-light-button">
+        <label
+          className="toggle-light-button"
+        >
           <input type="checkbox" />
 
-          <div className="switch">
+          <div
+            className="switch"
+            onClick={this.toggleLight}
+          >
             <div />
             <div />
             <span />
@@ -38,9 +50,9 @@ class ToggleLightButton extends Component<ToggleLightButtonProps, ToggleLightBut
         </label>
 
         <div
-          style={{ marginTop: 25 }}
+          style={{ marginTop: 30 }}
         >
-          Dark ({this.state.light})
+          {this.getLightState() }
         </div>
       </div>
     );

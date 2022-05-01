@@ -6,9 +6,36 @@ import Transitions from '../services/page-transition';
 
 import ProfilePicture from '../assets/images/gabriel-silveira.jpg';
 
-class HomePage extends Component {
+type HomeType = {
+  sections: string[],
+}
+
+class HomePage extends Component<{}, HomeType> {
+  constructor(props: object) {
+    super(props);
+
+    this.state = {
+      sections: [
+        'About',
+        'Experience',
+        'Skills',
+        'Contact Me',
+      ],
+    }
+  }
+
   componentDidMount() {
     new Transitions().init();
+  }
+
+  renderSection(section: string) {
+    return (
+      <section className="section">
+        <div className="close-section">&times;</div>
+
+        <div className="demo-box">{section}</div>
+      </section>
+    );
   }
 
   render() {
@@ -21,25 +48,9 @@ class HomePage extends Component {
         />
 
         <main className="main">
-          <section className="section">
-            <div className="close-section">&times;</div>
-            <div className="demo-box">About</div>
-          </section>
-
-          <section className="section">
-            <div className="close-section">&times;</div>
-            <div className="demo-box">Experience</div>
-          </section>
-
-          <section className="section">
-            <div className="close-section">&times;</div>
-            <div className="demo-box">Skills</div>
-          </section>
-
-          <section className="section">
-            <div className="close-section">&times;</div>
-            <div className="demo-box">Contact Me</div>
-          </section>
+          {this.state.sections.map(
+            (section: string) => this.renderSection(section),
+          )}
         </main>
       </div>
     )

@@ -40,7 +40,7 @@ $section-transition-timing-function: cubic-bezier(.4,0,.2,1);
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-size: 60px;
+  font-size: 36px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.4);
   transition: all linear 0.3s
@@ -48,6 +48,7 @@ $section-transition-timing-function: cubic-bezier(.4,0,.2,1);
 
 .main .section:hover .demo-box {
   margin-top: -10px;
+  font-size: 42px;
   color: rgba(255, 255, 255, 1.0)
 }
 
