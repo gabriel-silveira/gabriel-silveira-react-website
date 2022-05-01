@@ -2,10 +2,30 @@
 
 *
   font-family: 'Anonymous Pro', monospace
+  box-sizing: border-box
+
+html
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+
+body
+  margin: 0
+  background-color: #010204
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
 
 #app
   position: absolute
   width: 100%
   height: 100%
-  background-color: #010204
   color: #FFFFFF
+
+#app #layout
+  position: absolute
+  width: 100%
+  height: 100%
+
+#app #layout #page-content
+  position: absolute
+  width: calc(100% - 140px)
+  height: 100%

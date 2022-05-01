@@ -1,7 +1,6 @@
 import { Component } from 'react';
 
 import '../assets/scss/section-transitions.scss';
-import '../assets/sass/home.sass';
 
 import Transitions from '../services/page-transition';
 
@@ -18,17 +17,7 @@ class HomePage extends Component {
         <img
           src={ProfilePicture}
           alt="Gabriel Silveira"
-          style={{
-            zIndex: 999,
-            position: "absolute",
-            left: '50%',
-            top: '50%',
-            marginLeft: -100,
-            marginTop: -100,
-            width: 200,
-            borderRadius: 100,
-            border: '10px solid rgba(0, 0, 0, 0.1)',
-          }}
+          id="profile-picture"
         />
 
         <main className="main">
