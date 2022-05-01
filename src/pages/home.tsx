@@ -52,11 +52,11 @@ class HomePage extends Component<{}, HomeType> {
 
         <main className="main">
           {this.state.sections.map(
-            (section: string) => this.renderSection(section),
+            this.renderSection,
           )}
         </main>
       </div>
-    )
+    );
   }
 }
 
