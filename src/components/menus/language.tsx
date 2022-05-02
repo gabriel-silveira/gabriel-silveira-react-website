@@ -1,51 +1,44 @@
-import { Component } from "react";
+import { useState } from "react";
+import { useTranslation } from 'react-i18next';
+
+import { ILanguage, languages } from "../../services/i18n";
 
 import '../../assets/sass/languages.sass';
 
-type LanguagesListType = {
-  selectedLanguage: string,
-  languages: string[],
-}
+function ChooseLanguage() {
+  const { i18n } = useTranslation();
 
-class ChooseLanguage extends Component<{}, LanguagesListType> {
-  constructor(props: never) {
-    super(props);
+  const [selectedLanguage, setSelectedLanguage] = useState<ILanguage>(
+    languages[0],
+  );
 
-    this.state = {
-      selectedLanguage: 'English',
-      languages: [
-        'English',
-        'Português',
-      ]
-    }
+  const setLanguage = (language: ILanguage) => {
+    setSelectedLanguage({ ...language });
+
+    void i18n.changeLanguage(language.code);
   }
 
-  setLanguage = (language: string) => {
-    this.setState({
-      selectedLanguage: language,
-    });
+  const isActive = (language: ILanguage) => {
+    return language.code === selectedLanguage?.code;
   }
 
-  renderLanguages = (language: string) => {
+  const renderLanguages = (language: ILanguage) => {
     return (
       <div
-        className={ this.state.selectedLanguage === language ? 'active' : '' }
-        onClick={() => this.setLanguage(language)}
+        key={language.code}
+        className={isActive(language) ? 'active' : ''}
+        onClick={() => setLanguage(language)}
       >
-        {language}
+        {language.name} {isActive(language)}
       </div>
     );
   }
 
-  render() {
-    return (
-      <div className="languages-list">
-        {this.state.languages.map(
-          this.renderLanguages,
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className="languages-list">
+      {languages.map(renderLanguages)}
+    </div>
+  )
 }
 
 export default ChooseLanguage;

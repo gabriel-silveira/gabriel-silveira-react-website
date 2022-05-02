@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 
 import '../assets/scss/section-transitions.scss';
 
-import Transitions from '../services/page-transition';
+import Transitions from '../services/transitions';
 
 import ProfilePicture from '../assets/images/gabriel-silveira.jpg';
 

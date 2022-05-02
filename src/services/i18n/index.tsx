@@ -2,13 +2,29 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-import en from './en';
-import pt from './pt';
+import en from './languages/en';
+import pt from './languages/pt';
 
 const resources = {
   en,
   pt,
 };
+
+export interface ILanguage {
+  code: string,
+  name: string,
+}
+
+export const languages: ILanguage[] = [
+  {
+    code: 'en',
+    name: 'English',
+  },
+  {
+    code: 'pt',
+    name: 'Português',
+  },
+]
 
 i18n
   // detect user language
