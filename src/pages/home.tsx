@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useTranslation } from "react-i18next";
 
 import '../assets/scss/section-transitions.scss';
 
@@ -6,29 +6,12 @@ import Transitions from '../services/page-transition';
 
 import ProfilePicture from '../assets/images/gabriel-silveira.jpg';
 
-type HomeType = {
-  sections: string[],
-}
+function Home() {
+  const { t } = useTranslation();
 
-class HomePage extends Component<{}, HomeType> {
-  constructor(props: object) {
-    super(props);
+  new Transitions().init();
 
-    this.state = {
-      sections: [
-        'About',
-        'Experience',
-        'Skills',
-        'Contact Me',
-      ],
-    }
-  }
-
-  componentDidMount() {
-    new Transitions().init();
-  }
-
-  renderSection(section: string) {
+  function renderSection(section: string) {
     return (
       <section
         className="section"
@@ -41,23 +24,26 @@ class HomePage extends Component<{}, HomeType> {
     );
   }
 
-  render() {
-    return (
-      <div>
-        <img
-          src={ProfilePicture}
-          alt="Gabriel Silveira"
-          id="profile-picture"
-        />
-
-        <main className="main">
-          {this.state.sections.map(
-            this.renderSection,
-          )}
-        </main>
-      </div>
-    );
+  function getSections() {
+    return t(
+      'home.sections',
+      { returnObjects: true },
+    ) as string[];
   }
+
+  return (
+    <div>
+      <img
+        src={ProfilePicture}
+        alt="Gabriel Silveira"
+        id="profile-picture"
+      />
+
+      <main className="main">
+        {getSections().map(renderSection)}
+      </main>
+    </div>
+  )
 }
 
-export default HomePage;
+export default Home;
