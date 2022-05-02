@@ -1,12 +1,12 @@
 export default {
   translation: {
     home: {
-      sections: [
-        'About',
-        'Experience',
-        'Skills',
-        'Contact Me',
-      ],
+      sections: {
+        about: 'About',
+        experience: 'Experience',
+        skills: 'Skills',
+        contact: 'Contact Me',
+      },
     },
   },
 };

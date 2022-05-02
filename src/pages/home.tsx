@@ -5,11 +5,19 @@ import '../assets/scss/section-transitions.scss';
 import Transitions from '../services/transitions';
 
 import ProfilePicture from '../assets/images/gabriel-silveira.jpg';
+import { useState } from "react";
 
 function Home() {
   const { t } = useTranslation();
 
   new Transitions().init();
+
+  const [sections] = useState<string[]>([
+    'about',
+    'experience',
+    'skills',
+    'contact',
+  ]);
 
   function renderSection(section: string) {
     return (
@@ -19,16 +27,11 @@ function Home() {
       >
         <div className="close-section">&times;</div>
 
-        <div className="section-box">{section}</div>
+        <div className="section-box">
+          {t(`home.sections.${section}`)}
+        </div>
       </section>
     );
-  }
-
-  function getSections() {
-    return t(
-      'home.sections',
-      { returnObjects: true },
-    ) as string[];
   }
 
   return (
@@ -40,7 +43,7 @@ function Home() {
       />
 
       <main className="main">
-        {getSections().map(renderSection)}
+        {sections.map(renderSection)}
       </main>
     </div>
   )
