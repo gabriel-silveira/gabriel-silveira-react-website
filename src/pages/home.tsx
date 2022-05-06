@@ -1,16 +1,20 @@
 import { useTranslation } from "react-i18next";
 
+import {useEffect, useState} from "react";
+
 import '../assets/scss/section-transitions.scss';
 
 import Transitions from '../services/transitions';
 
 import ProfilePicture from '../assets/images/gabriel-silveira.jpg';
-import { useState } from "react";
 
 function Home() {
   const { t } = useTranslation();
 
-  new Transitions().init();
+  const [
+    openSectionEventsAdded,
+    setOpenSectionEventsAdded,
+  ] = useState<boolean>(false);
 
   const [sections] = useState<string[]>([
     'about',
@@ -18,6 +22,18 @@ function Home() {
     'skills',
     'contact',
   ]);
+
+  function initSections() {
+    if (!openSectionEventsAdded) {
+      new Transitions().init();
+
+      setOpenSectionEventsAdded(true);
+    }
+  }
+
+  useEffect(() => {
+    initSections();
+  });
 
   function renderSection(section: string) {
     return (

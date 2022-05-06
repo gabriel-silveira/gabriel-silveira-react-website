@@ -42,7 +42,12 @@ $section-transition-timing-function: cubic-bezier(.4,0,.2,1);
   font-size: 36px;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.4);
-  transition: all linear 0.2s
+  opacity: 1;
+  transition: all linear 0.2s;
+
+  &.#{$hide-class} {
+    opacity: 0
+  }
 }
 
 body.light {

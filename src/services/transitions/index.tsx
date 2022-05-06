@@ -40,13 +40,18 @@ class Transitions {
 
   init() {
     this.sections.forEach((element) => {
-      element.addEventListener("click", () => {
-        this.openSection(element)
+      element.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        if (element.children[1]) {
+          console.log(element.children[1]);
+        }
+
+        this.openSection(element);
       });
     });
 
     this.closeButtons.forEach((element) => {
-
       element.addEventListener("click", (event) => {
         event.stopPropagation();
 
