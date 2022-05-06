@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 import '../assets/scss/section-transitions.scss';
 
