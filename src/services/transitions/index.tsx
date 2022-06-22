@@ -43,10 +43,6 @@ class Transitions {
       element.addEventListener("click", (event) => {
         event.preventDefault();
 
-        if (element.children[1]) {
-          console.log(element.children[1]);
-        }
-
         this.openSection(element);
       });
     });
