@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap')
 
+/* width */
+::-webkit-scrollbar
+  width: 10px
+
+/* Track */
+::-webkit-scrollbar-track
+  background: #f1f1f1
+
+/* Handle */
+::-webkit-scrollbar-thumb
+  background: #888
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover
+  background: #282C34
+
 *
   font-family: 'Anonymous Pro', monospace
   box-sizing: border-box
@@ -35,8 +51,12 @@ body.light
   width: calc(100% - 140px)
   height: 100%
 
+h1
+  font-size: 48px
+  font-weight: normal
+
 p
-  font-size: 20px
+  font-size: 25px
   line-height: 150%
 
 a

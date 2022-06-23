@@ -105,6 +105,7 @@ body.light {
   }
 
   .page-content-wrapper {
+    overflow-y: auto;
     position: absolute;
     padding: 30px 60px;
     top: 10%;
